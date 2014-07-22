@@ -1,0 +1,8 @@
+name: sandbox_purity
+description: A sample purity application
+dependencies:
+  bson: any
+  purity: '>=0.8.6 <0.9.0'
+  route: any
+dev_dependencies:
+  unittest: any
