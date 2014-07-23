@@ -2,7 +2,7 @@
  * Author:  Daniel Robinson http://github.com/0xor1
  */
 
-library sandbox.host;
+library sandbox.purity.host;
 
 import 'dart:io';
 import 'dart:async';

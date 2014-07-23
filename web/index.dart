@@ -2,7 +2,7 @@
  * Author:  Daniel Robinson http://github.com/0xor1
  */
 
-library StopwatchClient;
+library sandbox.purity.client;
 
 import 'dart:html';
 import 'package:purity/client.dart';
