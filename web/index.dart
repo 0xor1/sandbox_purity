@@ -6,15 +6,16 @@ library sandbox.purity.client;
 
 import 'dart:html';
 import 'package:purity/client.dart';
+import 'package:sandbox_purity/view/sandbox_purity_view.dart';
 
 void main(){
   initConsumerSettings(
-    (app, proxyEndPoint){
-      //var view = new App(app);
-      //document.body.children.add(view.html);
+    (googleLogin, proxyEndPoint){
+      var view = new GoogleLoginView(googleLogin);
+      document.body.children.add(view.html);
     },
     (){
-      //No shutdown code required for this app
+      // no clean up
     },
     'ws');
 }
