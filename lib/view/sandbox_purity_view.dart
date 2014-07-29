@@ -19,6 +19,7 @@ class GoogleLoginView extends Consumer{
 
   GoogleLoginView(src)
   : super(src){
+    registerSandboxTranTypes();
     _binder = new cnp.CommandLineInputBinder(_cmdLn);
     _addCommandBindings();
     _hookUpEvents();
