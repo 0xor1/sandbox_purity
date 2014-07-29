@@ -14,7 +14,7 @@ class GoogleLoginView extends Consumer{
 
   cnp.DivElement get html => _cmdLn.html;
 
-  final cnp.CommandLine _cmdLn = new cnp.CommandLine();
+  final cnp.CommandLine _cmdLn = new cnp.CommandLine()..fill();
   cnp.CommandLineInputBinder _binder;
 
   GoogleLoginView(src)
