@@ -16,6 +16,7 @@ class GoogleLoginView extends Consumer{
 
   final cnp.CommandLine _cmdLn = new cnp.CommandLine()..fill();
   cnp.CommandLineInputBinder _binder;
+  cnp.WindowBase _loginWindow;
 
   GoogleLoginView(src)
   : super(src){
@@ -38,13 +39,15 @@ class GoogleLoginView extends Consumer{
 
   void _hookUpEvents(){
     listen(googleLogin, OAuth2LoginUrlRedirection, (Event<OAuth2LoginUrlRedirection> event){
-      cnp.window.open(event.data.url, 'google-login');
+      _loginWindow = cnp.window.open(event.data.url, 'google-login');
     });
     listen(googleLogin, OAuth2LoginTimeOut, (Event<OAuth2LoginTimeOut> event){
       _cmdLn.enterText('login attempt timed out, please try again.');
+      _loginWindow.close();
     });
     listen(googleLogin, OAuth2LoginComplete, (Event<OAuth2LoginComplete> event){
       _cmdLn.enterText('login success!!.');
+      _loginWindow.close();
     });
   }
 
