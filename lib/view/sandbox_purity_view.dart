@@ -40,6 +40,12 @@ class GoogleLoginView extends Consumer{
     listen(googleLogin, OAuth2LoginUrlRedirection, (Event<OAuth2LoginUrlRedirection> event){
       cnp.window.open(event.data.url, 'google-login');
     });
+    listen(googleLogin, OAuth2LoginTimeOut, (Event<OAuth2LoginTimeOut> event){
+      _cmdLn.enterText('login attempt timed out, please try again.');
+    });
+    listen(googleLogin, OAuth2LoginComplete, (Event<OAuth2LoginComplete> event){
+      _cmdLn.enterText('login success!!.');
+    });
   }
 
 }
