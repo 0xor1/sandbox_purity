@@ -80,8 +80,7 @@ class GoogleLogin extends Source implements IGoogleLogin{
         var urlStr = uri.toString();
         var httpClient = new HttpClient();
         httpClient.postUrl(uri)
-        .then((HttpClientRequest accessReq){
-          return accessReq.close(); })
+        .then((HttpClientRequest accessReq) => accessReq.close())
         .then((HttpClientResponse accessRes) => convert.UTF8.decodeStream(accessRes))
         .then((String accessJson){
           //get user info
