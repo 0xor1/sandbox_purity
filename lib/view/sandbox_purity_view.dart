@@ -42,12 +42,22 @@ class GoogleLoginView extends Consumer{
       _loginWindow = cnp.window.open(event.data.url, 'google-login');
     });
     listen(googleLogin, OAuth2LoginTimeOut, (Event<OAuth2LoginTimeOut> event){
-      _cmdLn.enterText('login attempt timed out, please try again.');
+      _cmdLn.enterText('login attempt timed out, please try again');
       _loginWindow.close();
     });
-    listen(googleLogin, OAuth2LoginComplete, (Event<OAuth2LoginComplete> event){
-      _cmdLn.enterText('login success!!.');
+    listen(googleLogin, OAuth2LoginAccessGranted, (Event<OAuth2LoginAccessGranted> event){
+      _cmdLn.enterText('login success!!');
       _loginWindow.close();
+    });
+    listen(googleLogin, OAuth2LoginUserDetails, (Event<OAuth2LoginUserDetails> event){
+      var data = event.data;
+      _cmdLn.enterText('user details retreived!!');
+      _cmdLn.enterText('firstName: ${data.firstName}');
+      _cmdLn.enterText('lastName: ${data.lastName}');
+      _cmdLn.enterText('id: ${data.id}');
+      _cmdLn.enterText('email: ${data.email}');
+      _cmdLn.enterText('displayName: ${data.displayName}');
+      _cmdLn.enterText('imageUrl: ${data.imageUrl}');
     });
   }
 
