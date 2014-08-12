@@ -6,6 +6,7 @@ library sandbox.purity.model;
 
 import 'dart:io';
 import 'dart:async';
+import 'dart:convert';
 import 'package:oauth2/oauth2.dart' as oauth2;
 import 'package:route/server.dart' show Router;
 import 'package:bson/bson.dart';

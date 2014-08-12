@@ -7,7 +7,7 @@ part of sandbox.purity.model;
 abstract class Login extends Source implements ILogin{
 
   static final Map<ObjectId, Login> _activeLogins = new Map<ObjectId, Login>();
-  static bool _firstTimeSetupComplete = true;
+  static bool _firstTimeSetupComplete = false;
   static int _timeout = 30;
 
   final Uri authUrl;
@@ -44,7 +44,7 @@ abstract class Login extends Source implements ILogin{
     });
 
     var authRedirectUrl = new Uri.https(authUrl.host, authUrl.path, {
-      'redirect_uri' : redirectUrl,
+      'redirect_uri' : redirectUrl.toString(),
       'response_type' : 'code',
       'client_id' : clientId,
       'scope' : scopes.join(scopeDelimiter),

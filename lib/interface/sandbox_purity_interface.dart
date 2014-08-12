@@ -22,6 +22,7 @@ void registerSandboxTranTypes(){
     registerTranSubtype(OAuth2LoginAccessDenied, () => new OAuth2LoginAccessDenied());
     registerTranSubtype(OAuth2LoginUnkownError, () => new OAuth2LoginUnkownError());
     registerTranSubtype(OAuth2LoginUserDetails, () => new OAuth2LoginUserDetails());
+    registerTranSubtype(Oauth2ResourceResponse, () => new Oauth2ResourceResponse());
   });
 }
 
