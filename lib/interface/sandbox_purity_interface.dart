@@ -20,12 +20,18 @@ void registerSandboxTranTypes(){
     registerTranSubtype(OAuth2LoginAccessGranted, () => new OAuth2LoginAccessGranted());
     registerTranSubtype(OAuth2LoginTimeOut, () => new OAuth2LoginTimeOut());
     registerTranSubtype(OAuth2LoginAccessDenied, () => new OAuth2LoginAccessDenied());
+    registerTranSubtype(OAuth2LoginUnkownError, () => new OAuth2LoginUnkownError());
     registerTranSubtype(OAuth2LoginUserDetails, () => new OAuth2LoginUserDetails());
   });
 }
 
-abstract class IGoogleLogin{
+abstract class ILogin{
+  /// start the oauth2 login process.
   void login();
+  /// set the time in seconds from when the login process starts to the point when it times out.
+  void setLoginTimeout(int seconds);
+  /// request a resource, this will fail if the login has not already successfully completed.
+  void requestResource(String resource, {Map<String, String> headers});
 }
 
 class OAuth2LoginUrlRedirection extends Transmittable implements IOAuth2LoginUrlRedirection{}
@@ -49,4 +55,9 @@ abstract class IOAuth2LoginUserDetails{
   String email;
   String displayName;
   String imageUrl;
+}
+
+class Oauth2ResourceResponse extends Transmittable implements IOauth2ResourceResponse{}
+abstract class IOauth2ResourceResponse{
+  String response;
 }

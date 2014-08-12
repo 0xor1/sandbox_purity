@@ -10,7 +10,7 @@ import 'package:purity/purity.dart';
 
 class GoogleLoginView extends Consumer{
 
-  dynamic get googleLogin => source;
+  dynamic get login => source;
 
   cnp.DivElement get html => _cmdLn.html;
 
@@ -32,32 +32,41 @@ class GoogleLoginView extends Consumer{
         'g-login',
         'logs in using google oauth 2',
         (cnp.CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
-          googleLogin.login();
+          login.login();
         }),
     ]);
   }
 
   void _hookUpEvents(){
-    listen(googleLogin, OAuth2LoginUrlRedirection, (Event<OAuth2LoginUrlRedirection> event){
+    listen(login, OAuth2LoginUrlRedirection, (Event<OAuth2LoginUrlRedirection> event){
       _loginWindow = cnp.window.open(event.data.url, 'google-login');
     });
-    listen(googleLogin, OAuth2LoginTimeOut, (Event<OAuth2LoginTimeOut> event){
-      _cmdLn.enterText('login attempt timed out, please try again');
+    listen(login, OAuth2LoginTimeOut, (Event<OAuth2LoginTimeOut> event){
+      _cmdLn.enterText('login timed out, please try again');
       _loginWindow.close();
     });
-    listen(googleLogin, OAuth2LoginAccessGranted, (Event<OAuth2LoginAccessGranted> event){
+    listen(login, OAuth2LoginTimeOut, (Event<OAuth2LoginAccessDenied> event){
+      _cmdLn.enterText('login failed for reason - ACCESS_DENIED');
+      _loginWindow.close();
+    });
+    listen(login, OAuth2LoginTimeOut, (Event<OAuth2LoginUnkownError> event){
+      _cmdLn.enterText('login failed for unknown error, please try again');
+      _loginWindow.close();
+    });
+    listen(login, OAuth2LoginAccessGranted, (Event<OAuth2LoginAccessGranted> event){
       _cmdLn.enterText('login success!!');
       _loginWindow.close();
     });
-    listen(googleLogin, OAuth2LoginUserDetails, (Event<OAuth2LoginUserDetails> event){
+    listen(login, OAuth2LoginUserDetails, (Event<OAuth2LoginUserDetails> event){
       var data = event.data;
+      _cmdLn.enterText('image:');
+      _cmdLn.enterHtml('<img src="${data.imageUrl}"></img>');
       _cmdLn.enterText('user details retreived!!');
       _cmdLn.enterText('firstName: ${data.firstName}');
       _cmdLn.enterText('lastName: ${data.lastName}');
       _cmdLn.enterText('id: ${data.id}');
       _cmdLn.enterText('email: ${data.email}');
       _cmdLn.enterText('displayName: ${data.displayName}');
-      _cmdLn.enterText('imageUrl: ${data.imageUrl}');
     });
   }
 
