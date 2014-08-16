@@ -34,6 +34,12 @@ class GoogleLoginView extends Consumer{
         'logs in using google oauth 2',
         (cnp.CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
           googleLogin.login();
+        }),
+      new cnp.CommandLineBinding(
+        'requestUserDetails',
+        'request details for the logged in user',
+        (cnp.CommandLine cmdLn, List<String> posArgs, Map<String, String> namArgs){
+          googleLogin.requestUserDetails();
         })
     ]);
   }
