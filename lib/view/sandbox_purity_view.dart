@@ -4,7 +4,7 @@
 
 library sandbox.purity.view;
 
-import 'package:sandbox_purity/interface/sandbox_purity_interface.dart';
+import 'package:purity_oauth2/tran/purity_oauth2_tran.dart';
 import 'package:controls_and_panels/controls_and_panels.dart' as cnp;
 import 'package:purity/purity.dart';
 
@@ -20,7 +20,7 @@ class GoogleLoginView extends Consumer{
 
   GoogleLoginView(src)
   : super(src){
-    registerSandboxTranTypes();
+    registerPurityOAuth2TranTypes();
     _binder = new cnp.CommandLineInputBinder(_cmdLn);
     _addCommandBindings();
     _hookUpEvents();

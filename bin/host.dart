@@ -7,7 +7,7 @@ library sandbox.purity.host;
 import 'dart:io';
 import 'dart:async';
 import 'package:purity/host.dart';
-import 'package:sandbox_purity/model/sandbox_purity_model.dart';
+import 'package:purity_oauth2/source/purity_oauth2_source.dart';
 
 void main(){
   new Host(

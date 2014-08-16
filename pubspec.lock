@@ -57,6 +57,10 @@ packages:
     description: purity
     source: hosted
     version: "0.9.0"
+  purity_oauth2:
+    description: purity_oauth2
+    source: hosted
+    version: "0.0.0"
   route:
     description: route
     source: hosted

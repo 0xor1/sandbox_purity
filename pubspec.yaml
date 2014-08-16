@@ -5,8 +5,8 @@ dependencies:
   bson: any
   controls_and_panels: any
   http: any
-  oauth2: '>=0.9.2 <1.0.0'
   purity: '>=0.9.0 <0.10.0'
+  purity_oauth2: '>=0.0.0 <0.1.0'
   route: any
 dev_dependencies:
   unittest: any
