@@ -6,8 +6,7 @@ dependencies:
   controls_and_panels: any
   http: any
   purity: '>=0.9.0 <0.10.0'
-  purity_oauth2:
-    path: ../purity_oauth2
+  purity_oauth2: '>=0.6.0 <0.7.0'
   route: any
 dev_dependencies:
   unittest: any
