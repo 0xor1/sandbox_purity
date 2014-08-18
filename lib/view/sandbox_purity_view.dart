@@ -4,7 +4,7 @@
 
 library sandbox.purity.view;
 
-import 'package:purity_oauth2/tran/purity_oauth2_tran.dart';
+import 'package:purity_oauth2/interface/purity_oauth2_interface.dart';
 import 'package:controls_and_panels/controls_and_panels.dart' as cnp;
 import 'package:purity/purity.dart';
 
@@ -46,6 +46,7 @@ class GoogleLoginView extends Consumer{
 
   void _hookUpEvents(){
     listen(googleLogin, OAuth2LoginUrlRedirection, (Event<OAuth2LoginUrlRedirection> event){
+      _cmdLn.enterText('redirecting to google login server: ${event.data.url}');
       _loginWindow = cnp.window.open(event.data.url, 'google-login');
     });
     listen(googleLogin, OAuth2LoginTimeOut, (Event<OAuth2LoginTimeOut> event){
